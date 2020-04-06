@@ -48,6 +48,8 @@ struct Hand  {
         
         if pairs.count == 1 {
             return .pair
+        } else if pairs.count == 2 {
+            return .twoPair
         }
         
         return .highCard

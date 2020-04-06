@@ -93,4 +93,43 @@ class CardRankTests: XCTestCase {
         XCTAssertEqual(h3.getHandName(), HandName.pair)
         XCTAssertEqual(h4.getHandName(), HandName.pair)
     }
+    
+    func testHandNameTwoPair() {
+        let h1 = Hand(cards: [
+            Card(value: .ace, suit: .heart),
+            Card(value: .ten, suit: .diamond),
+            Card(value: .ace, suit: .club),
+            Card(value: .ten, suit: .club),
+            Card(value: .five, suit: .spade)
+        ])
+        
+        let h2 = Hand(cards: [
+            Card(value: .eight, suit: .heart),
+            Card(value: .nine, suit: .diamond),
+            Card(value: .nine, suit: .club),
+            Card(value: .two, suit: .spade),
+            Card(value: .eight, suit: .club)
+        ])
+        
+        let h3 = Hand(cards: [
+            Card(value: .two, suit: .spade),
+            Card(value: .six, suit: .heart),
+            Card(value: .six, suit: .club),
+            Card(value: .two, suit: .diamond),
+            Card(value: .nine, suit: .club)
+        ])
+        
+        let h4 = Hand(cards: [
+            Card(value: .king, suit: .spade),
+            Card(value: .ace, suit: .heart),
+            Card(value: .king, suit: .club),
+            Card(value: .two, suit: .diamond),
+            Card(value: .ace, suit: .club)
+        ])
+        
+        XCTAssertEqual(h1.getHandName(), HandName.twoPair)
+        XCTAssertEqual(h2.getHandName(), HandName.twoPair)
+        XCTAssertEqual(h3.getHandName(), HandName.twoPair)
+        XCTAssertEqual(h4.getHandName(), HandName.twoPair)
+    }
 }
