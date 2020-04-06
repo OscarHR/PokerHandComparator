@@ -16,7 +16,7 @@ enum HandName {
     case straight
     case flush
     case fullHouse
-    case FourOfAKind
+    case fourOfAKind
     case straightFlush
     case royalFlush
 }
@@ -40,15 +40,26 @@ struct Hand  {
         
         var pairs = [Int]()
         var tripleFound = 0
+        var quadrupleFound = 0
         
         for (key, value) in dict {
             if value == 2 {
                 pairs.append(key)
             } else if value == 3 {
                 tripleFound = key
+            } else if value == 4 {
+                quadrupleFound = key
             }
         }
 
+        if quadrupleFound != 0 {
+            return .fourOfAKind
+        }
+        
+        if tripleFound != 0 && pairs.count == 1 {
+            return .fullHouse
+        }
+            
         if checkForFlush() {
             return .flush
         }
@@ -57,13 +68,15 @@ struct Hand  {
             return .straight
         }
         
-        if tripleFound != 0 && pairs.count == 1 {
-            return .fullHouse
-        } else if tripleFound != 0 {
+        if tripleFound != 0 {
             return .threeOfAKind
-        } else if pairs.count == 2 {
+        }
+        
+        if pairs.count == 2 {
             return .twoPair
-        } else if pairs.count == 1 {
+        }
+        
+        if pairs.count == 1 {
             return .pair
         }
         
