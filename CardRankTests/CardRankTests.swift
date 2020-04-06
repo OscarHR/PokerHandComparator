@@ -233,6 +233,45 @@ extension CardRankTests {
         XCTAssertEqual(h3.getHandName(), HandName.flush)
         XCTAssertEqual(h4.getHandName(), HandName.flush)
     }
+    
+    func testHandNameFullHouse() {
+        let h1 = Hand(cards: [
+            Card(value: .ace, suit: .heart),
+            Card(value: .two, suit: .spade),
+            Card(value: .ace, suit: .diamond),
+            Card(value: .ace, suit: .club),
+            Card(value: .two, suit: .heart)
+        ])
+        
+        let h2 = Hand(cards: [
+            Card(value: .three, suit: .heart),
+            Card(value: .three, suit: .spade),
+            Card(value: .nine, suit: .diamond),
+            Card(value: .nine, suit: .club),
+            Card(value: .three, suit: .club)
+        ])
+        
+        let h3 = Hand(cards: [
+            Card(value: .two, suit: .heart),
+            Card(value: .two, suit: .spade),
+            Card(value: .six, suit: .diamond),
+            Card(value: .six, suit: .club),
+            Card(value: .two, suit: .club)
+        ])
+        
+        let h4 = Hand(cards: [
+            Card(value: .four, suit: .heart),
+            Card(value: .four, suit: .spade),
+            Card(value: .five, suit: .diamond),
+            Card(value: .five, suit: .club),
+            Card(value: .five, suit: .heart)
+        ])
+        
+        XCTAssertEqual(h1.getHandName(), HandName.fullHouse)
+        XCTAssertEqual(h2.getHandName(), HandName.fullHouse)
+        XCTAssertEqual(h3.getHandName(), HandName.fullHouse)
+        XCTAssertEqual(h4.getHandName(), HandName.fullHouse)
+    }
 }
 
 // MARK: - Hand comparisons

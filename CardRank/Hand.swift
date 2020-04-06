@@ -39,30 +39,32 @@ struct Hand  {
         }
         
         var pairs = [Int]()
-        var triples = [Int]()
+        var tripleFound = 0
         
         for (key, value) in dict {
             if value == 2 {
                 pairs.append(key)
             } else if value == 3 {
-                triples.append(key)
+                tripleFound = key
             }
         }
-        
-        if pairs.count == 1 {
-            return .pair
-        } else if pairs.count == 2 {
-            return .twoPair
-        } else if triples.count == 1 {
-            return .threeOfAKind
+
+        if checkForFlush() {
+            return .flush
         }
         
         if checkForStraight() {
             return .straight
         }
         
-        if checkForFlush() {
-            return .flush
+        if tripleFound != 0 && pairs.count == 1 {
+            return .fullHouse
+        } else if tripleFound != 0 {
+            return .threeOfAKind
+        } else if pairs.count == 2 {
+            return .twoPair
+        } else if pairs.count == 1 {
+            return .pair
         }
         
         return .highCard
