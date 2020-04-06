@@ -22,6 +22,89 @@ class CardRankTests: XCTestCase {
     }
 }
 
+// MARK: - Comparator Tests By Card
+extension CardRankTests {
+    func testCompareHighCard() {
+        let h1 = Hand(cards: [
+            Card(value: .ace, suit: .club),
+            Card(value: .eight, suit: .heart),
+            Card(value: .king, suit: .heart),
+            Card(value: .five, suit: .spade),
+            Card(value: .two, suit: .club)
+        ])
+        
+        let h2 = Hand(cards: [
+            Card(value: .ace, suit: .heart),
+            Card(value: .four, suit: .club),
+            Card(value: .ten, suit: .diamond),
+            Card(value: .two, suit: .club),
+            Card(value: .six, suit: .spade)
+        ])
+        
+        XCTAssertTrue(h1.beats(hand: h2))
+    }
+    
+    func testComparePairsOfAces() {
+        let h1 = Hand(cards: [
+            Card(value: .ace, suit: .club),
+            Card(value: .ace, suit: .heart),
+            Card(value: .king, suit: .heart),
+            Card(value: .five, suit: .spade),
+            Card(value: .two, suit: .club)
+        ])
+        
+        let h2 = Hand(cards: [
+            Card(value: .ace, suit: .heart),
+            Card(value: .ace, suit: .club),
+            Card(value: .ten, suit: .diamond),
+            Card(value: .two, suit: .club),
+            Card(value: .six, suit: .spade)
+        ])
+        
+        XCTAssertTrue(h1.beats(hand: h2))
+    }
+    
+    func testComparePairs() {
+        let h1 = Hand(cards: [
+            Card(value: .ace, suit: .club),
+            Card(value: .ace, suit: .heart),
+            Card(value: .king, suit: .heart),
+            Card(value: .five, suit: .spade),
+            Card(value: .two, suit: .club)
+        ])
+        
+        let h2 = Hand(cards: [
+            Card(value: .nine, suit: .heart),
+            Card(value: .nine, suit: .club),
+            Card(value: .ten, suit: .diamond),
+            Card(value: .two, suit: .club),
+            Card(value: .six, suit: .spade)
+        ])
+        
+        XCTAssertTrue(h1.beats(hand: h2))
+    }
+    
+    func testCompareFlushes() {
+        let h1 = Hand(cards: [
+            Card(value: .jack, suit: .heart),
+            Card(value: .two, suit: .heart),
+            Card(value: .nine, suit: .heart),
+            Card(value: .four, suit: .heart),
+            Card(value: .ten, suit: .heart)
+        ])
+        
+        let h2 = Hand(cards: [
+            Card(value: .six, suit: .heart),
+            Card(value: .two, suit: .heart),
+            Card(value: .nine, suit: .heart),
+            Card(value: .four, suit: .heart),
+            Card(value: .ten, suit: .heart)
+        ])
+        
+        XCTAssertTrue(h1.beats(hand: h2))
+    }
+}
+
 // MARK: - Comparator Tests
 extension CardRankTests {
     func testCompareHighCardToAll() {

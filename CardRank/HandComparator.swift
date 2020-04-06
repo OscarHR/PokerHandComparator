@@ -10,15 +10,25 @@ import Foundation
 
 class HandComparator {
     static func compare(hand: Hand, to toHand: Hand) -> Hand {
-        let handHandName = hand.getHandName()
-        let toHandHandName = toHand.getHandName()
+        let handName = hand.getHandName()
+        let toHandName = toHand.getHandName()
 
-        if handHandName.rawValue > toHandHandName.rawValue {
+        if handName.rawValue > toHandName.rawValue {
             return hand
-        } else if handHandName.rawValue < toHandHandName.rawValue {
+        } else if handName.rawValue < toHandName.rawValue {
             return toHand
         } else {
-            // Todo: compare card by card
+            for i in 0..<hand.cards.count {
+                let cardHand = hand.cards[i]
+                let cardToHand = toHand.cards[i]
+                
+                if cardHand > cardToHand {
+                    return hand
+                } else if cardHand < cardToHand {
+                    return toHand
+                }
+            }
+            
             return Hand(cards: [])
         }
     }
