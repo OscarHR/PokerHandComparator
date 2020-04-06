@@ -52,6 +52,10 @@ struct Hand  {
             }
         }
 
+        if checkForStraightFlush() {
+            return .straightFlush
+        }
+        
         if quadrupleFound != 0 {
             return .fourOfAKind
         }
@@ -83,6 +87,26 @@ struct Hand  {
         return .highCard
     }
     
+    func checkForStraightFlush() -> Bool {
+        return checkForStraight() && checkForFlush() 
+    }
+    
+    func checkForFlush() -> Bool {
+        var currentSuit : Suit? = nil
+        
+        for card in cards {
+            if let currentSuit = currentSuit {
+                if currentSuit != card.suit {
+                    return false
+                }
+            } else {
+                currentSuit = card.suit
+            }
+        }
+        
+        return true
+    }
+    
     func checkForStraight() -> Bool {
         var previousCard : Card? = nil
         var straightCount = 0
@@ -110,22 +134,6 @@ struct Hand  {
         }
         
         return straightCount == 5
-    }
-    
-    func checkForFlush() -> Bool {
-        var currentSuit : Suit? = nil
-        
-        for card in cards {
-            if let currentSuit = currentSuit {
-                if currentSuit != card.suit {
-                    return false
-                }
-            } else {
-                currentSuit = card.suit
-            }
-        }
-        
-        return true
     }
 }
 

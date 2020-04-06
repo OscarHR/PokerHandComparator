@@ -311,6 +311,45 @@ extension CardRankTests {
         XCTAssertEqual(h3.getHandName(), HandName.fourOfAKind)
         XCTAssertEqual(h4.getHandName(), HandName.fourOfAKind)
     }
+    
+    func testHandNameStraightFlush() {
+        let h1 = Hand(cards: [
+            Card(value: .ace, suit: .heart),
+            Card(value: .two, suit: .heart),
+            Card(value: .three, suit: .heart),
+            Card(value: .four, suit: .heart),
+            Card(value: .five, suit: .heart)
+        ])
+        
+        let h2 = Hand(cards: [
+            Card(value: .five, suit: .diamond),
+            Card(value: .four, suit: .diamond),
+            Card(value: .three, suit: .diamond),
+            Card(value: .two, suit: .diamond),
+            Card(value: .ace, suit: .diamond)
+        ])
+        
+        let h3 = Hand(cards: [
+            Card(value: .ace, suit: .club),
+            Card(value: .king, suit: .club),
+            Card(value: .jack, suit: .club),
+            Card(value: .queen, suit: .club),
+            Card(value: .ten, suit: .club)
+        ])
+        
+        let h4 = Hand(cards: [
+            Card(value: .seven, suit: .spade),
+            Card(value: .six, suit: .spade),
+            Card(value: .eight, suit: .spade),
+            Card(value: .five, suit: .spade),
+            Card(value: .nine, suit: .spade)
+        ])
+        
+        XCTAssertEqual(h1.getHandName(), HandName.straightFlush)
+        XCTAssertEqual(h2.getHandName(), HandName.straightFlush)
+        XCTAssertEqual(h3.getHandName(), HandName.straightFlush)
+        XCTAssertEqual(h4.getHandName(), HandName.straightFlush)
+    }
 }
 
 // MARK: - Hand comparisons
