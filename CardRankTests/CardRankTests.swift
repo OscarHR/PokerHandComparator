@@ -330,7 +330,7 @@ extension CardRankTests {
         ])
         
         let h3 = Hand(cards: [
-            Card(value: .ace, suit: .club),
+            Card(value: .nine, suit: .club),
             Card(value: .king, suit: .club),
             Card(value: .jack, suit: .club),
             Card(value: .queen, suit: .club),
@@ -349,6 +349,45 @@ extension CardRankTests {
         XCTAssertEqual(h2.getHandName(), HandName.straightFlush)
         XCTAssertEqual(h3.getHandName(), HandName.straightFlush)
         XCTAssertEqual(h4.getHandName(), HandName.straightFlush)
+    }
+    
+    func testHandNameRoyalFlush() {
+        let h1 = Hand(cards: [
+            Card(value: .ace, suit: .heart),
+            Card(value: .queen, suit: .heart),
+            Card(value: .king, suit: .heart),
+            Card(value: .jack, suit: .heart),
+            Card(value: .ten, suit: .heart)
+        ])
+        
+        let h2 = Hand(cards: [
+            Card(value: .jack, suit: .diamond),
+            Card(value: .ace, suit: .diamond),
+            Card(value: .king, suit: .diamond),
+            Card(value: .ten, suit: .diamond),
+            Card(value: .queen, suit: .diamond)
+        ])
+        
+        let h3 = Hand(cards: [
+            Card(value: .king, suit: .club),
+            Card(value: .jack, suit: .club),
+            Card(value: .queen, suit: .club),
+            Card(value: .ace, suit: .club),
+            Card(value: .ten, suit: .club)
+        ])
+        
+        let h4 = Hand(cards: [
+            Card(value: .ten, suit: .spade),
+            Card(value: .jack, suit: .spade),
+            Card(value: .queen, suit: .spade),
+            Card(value: .king, suit: .spade),
+            Card(value: .ace, suit: .spade)
+        ])
+        
+        XCTAssertEqual(h1.getHandName(), HandName.royalFlush)
+        XCTAssertEqual(h2.getHandName(), HandName.royalFlush)
+        XCTAssertEqual(h3.getHandName(), HandName.royalFlush)
+        XCTAssertEqual(h4.getHandName(), HandName.royalFlush)
     }
 }
 

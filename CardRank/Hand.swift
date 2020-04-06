@@ -51,6 +51,10 @@ struct Hand  {
                 quadrupleFound = key
             }
         }
+        
+        if checkForRoyalFlush() {
+            return .royalFlush
+        }
 
         if checkForStraightFlush() {
             return .straightFlush
@@ -87,11 +91,20 @@ struct Hand  {
         return .highCard
     }
     
-    func checkForStraightFlush() -> Bool {
+    private func checkForRoyalFlush() -> Bool {
+        return checkForStraightFlush()
+            && cards.contains(where: { (card) -> Bool in
+                return card.value == .ace
+            }) && cards.contains(where: { (card) -> Bool in
+                return card.value == .king
+            })
+    }
+    
+    private func checkForStraightFlush() -> Bool {
         return checkForStraight() && checkForFlush() 
     }
     
-    func checkForFlush() -> Bool {
+    private func checkForFlush() -> Bool {
         var currentSuit : Suit? = nil
         
         for card in cards {
@@ -107,7 +120,7 @@ struct Hand  {
         return true
     }
     
-    func checkForStraight() -> Bool {
+    private func checkForStraight() -> Bool {
         var previousCard : Card? = nil
         var straightCount = 0
         var firstCardIsAce = false
