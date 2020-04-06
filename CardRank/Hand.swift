@@ -61,6 +61,10 @@ struct Hand  {
             return .straight
         }
         
+        if checkForFlush() {
+            return .flush
+        }
+        
         return .highCard
     }
     
@@ -91,6 +95,22 @@ struct Hand  {
         }
         
         return straightCount == 5
+    }
+    
+    func checkForFlush() -> Bool {
+        var currentSuit : Suit? = nil
+        
+        for card in cards {
+            if let currentSuit = currentSuit {
+                if currentSuit != card.suit {
+                    return false
+                }
+            } else {
+                currentSuit = card.suit
+            }
+        }
+        
+        return true
     }
 }
 
