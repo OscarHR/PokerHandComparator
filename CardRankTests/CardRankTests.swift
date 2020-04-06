@@ -155,6 +155,45 @@ extension CardRankTests {
         XCTAssertEqual(h3.getHandName(), HandName.threeOfAKind)
         XCTAssertEqual(h4.getHandName(), HandName.threeOfAKind)
     }
+    
+    func testHandNameStraight() {
+        let h1 = Hand(cards: [
+            Card(value: .ace, suit: .heart),
+            Card(value: .two, suit: .diamond),
+            Card(value: .three, suit: .club),
+            Card(value: .four, suit: .club),
+            Card(value: .five, suit: .spade)
+        ])
+        
+        let h2 = Hand(cards: [
+            Card(value: .five, suit: .heart),
+            Card(value: .four, suit: .diamond),
+            Card(value: .three, suit: .club),
+            Card(value: .two, suit: .club),
+            Card(value: .ace, suit: .spade)
+        ])
+        
+        let h3 = Hand(cards: [
+            Card(value: .ace, suit: .heart),
+            Card(value: .king, suit: .diamond),
+            Card(value: .jack, suit: .club),
+            Card(value: .queen, suit: .club),
+            Card(value: .ten, suit: .spade)
+        ])
+        
+        let h4 = Hand(cards: [
+            Card(value: .seven, suit: .heart),
+            Card(value: .six, suit: .diamond),
+            Card(value: .eight, suit: .club),
+            Card(value: .five, suit: .club),
+            Card(value: .nine, suit: .spade)
+        ])
+        
+        XCTAssertEqual(h1.getHandName(), HandName.straight)
+        XCTAssertEqual(h2.getHandName(), HandName.straight)
+        XCTAssertEqual(h3.getHandName(), HandName.straight)
+        XCTAssertEqual(h4.getHandName(), HandName.straight)
+    }
 }
 
 // MARK: - Hand comparisons

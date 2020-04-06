@@ -57,6 +57,35 @@ struct Hand  {
             return .threeOfAKind
         }
         
+        var previousCard : Card? = nil
+        var straightCount = 0
+        var firstCardIsAce = false
+        
+        for card in cards {
+            if let previous = previousCard {
+                let next = previous.value.rawValue - 1
+                if firstCardIsAce {
+                    if next != 13 && next != 5 {
+                        break
+                    } else {
+                        firstCardIsAce = false
+                    }
+                } else if next != card.value.rawValue {
+                    break
+                }
+            } else if card.value == .ace {
+                firstCardIsAce = true
+            }
+            
+            previousCard = card
+            
+            straightCount = straightCount + 1
+        }
+        
+        if straightCount == 5 {
+            return .straight
+        }
+        
         return .highCard
     }
 }
