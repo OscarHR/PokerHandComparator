@@ -21,8 +21,11 @@ enum HandName : Int {
     case royalFlush = 10
 }
 
-struct Hand  {
+class Hand  {
     let cards : [Card]
+    
+    private var isFlush : Bool?
+    private var isStraight : Bool?
     
     init(cards: [Card]) {
         self.cards = cards.sorted(by: { $0 > $1 })
@@ -109,22 +112,33 @@ struct Hand  {
     }
     
     private func checkForFlush() -> Bool {
+        if let isFlush = isFlush {
+            return isFlush
+        }
+        
         var currentSuit : Suit? = nil
         
         for card in cards {
             if let currentSuit = currentSuit {
                 if currentSuit != card.suit {
-                    return false
+                    isFlush = false
+                    return isFlush!
                 }
             } else {
                 currentSuit = card.suit
             }
         }
         
-        return true
+        isFlush = true
+        return isFlush!
     }
     
     private func checkForStraight() -> Bool {
+        
+        if let isStraight = isStraight {
+            return isStraight
+        }
+        
         var previousCard : Card? = nil
         var straightCount = 0
         var firstCardIsAce = false
@@ -135,9 +149,8 @@ struct Hand  {
                 if firstCardIsAce {
                     if next != 13 && next != 5 {
                         break
-                    } else {
-                        firstCardIsAce = false
                     }
+                    firstCardIsAce = false
                 } else if next != card.value.rawValue {
                     break
                 }
@@ -150,7 +163,8 @@ struct Hand  {
             straightCount = straightCount + 1
         }
         
-        return straightCount == 5
+        isStraight = straightCount == 5
+        return isStraight!
     }
 }
 
