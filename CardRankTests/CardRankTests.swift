@@ -48,10 +48,6 @@ class CardRankTests: XCTestCase {
             Card(value: .ace, suit: .spade),
         ])
         
-        print(firstHand.cards)
-        print("..")
-        print(secondHand.cards)
-        
         XCTAssertEqual(firstHand, secondHand)
     }
 }
