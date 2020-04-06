@@ -19,7 +19,7 @@ class HandComparator {
             return toHand
         } else {
             // Todo: compare card by card
-            return hand
+            return Hand(cards: [])
         }
     }
 }

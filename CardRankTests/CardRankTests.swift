@@ -39,7 +39,6 @@ extension CardRankTests {
     
     func testComparePairToAll() {
         let hand = TestConstants.defaultPairHand
-        XCTAssertTrue(hand.beats(hand: TestConstants.defaultPairHand))
         XCTAssertFalse(hand.beats(hand: TestConstants.defaultTwoPairHand))
         XCTAssertFalse(hand.beats(hand: TestConstants.defaultThreeOfAKindHand))
         XCTAssertFalse(hand.beats(hand: TestConstants.defaultStraightHand))
@@ -53,7 +52,6 @@ extension CardRankTests {
     func testCompareTwoPairToAll() {
         let hand = TestConstants.defaultTwoPairHand
         XCTAssertTrue(hand.beats(hand: TestConstants.defaultPairHand))
-        XCTAssertTrue(hand.beats(hand: TestConstants.defaultTwoPairHand))
         XCTAssertFalse(hand.beats(hand: TestConstants.defaultThreeOfAKindHand))
         XCTAssertFalse(hand.beats(hand: TestConstants.defaultStraightHand))
         XCTAssertFalse(hand.beats(hand: TestConstants.defaultFlushHand))
@@ -67,7 +65,6 @@ extension CardRankTests {
         let hand = TestConstants.defaultThreeOfAKindHand
         XCTAssertTrue(hand.beats(hand: TestConstants.defaultPairHand))
         XCTAssertTrue(hand.beats(hand: TestConstants.defaultTwoPairHand))
-        XCTAssertTrue(hand.beats(hand: TestConstants.defaultThreeOfAKindHand))
         XCTAssertFalse(hand.beats(hand: TestConstants.defaultStraightHand))
         XCTAssertFalse(hand.beats(hand: TestConstants.defaultFlushHand))
         XCTAssertFalse(hand.beats(hand: TestConstants.defaultFullHouseHand))
@@ -81,7 +78,6 @@ extension CardRankTests {
         XCTAssertTrue(hand.beats(hand: TestConstants.defaultPairHand))
         XCTAssertTrue(hand.beats(hand: TestConstants.defaultTwoPairHand))
         XCTAssertTrue(hand.beats(hand: TestConstants.defaultThreeOfAKindHand))
-        XCTAssertTrue(hand.beats(hand: TestConstants.defaultStraightHand))
         XCTAssertFalse(hand.beats(hand: TestConstants.defaultFlushHand))
         XCTAssertFalse(hand.beats(hand: TestConstants.defaultFullHouseHand))
         XCTAssertFalse(hand.beats(hand: TestConstants.defaultFourOfAKindHand))
@@ -95,7 +91,6 @@ extension CardRankTests {
         XCTAssertTrue(hand.beats(hand: TestConstants.defaultTwoPairHand))
         XCTAssertTrue(hand.beats(hand: TestConstants.defaultThreeOfAKindHand))
         XCTAssertTrue(hand.beats(hand: TestConstants.defaultStraightHand))
-        XCTAssertTrue(hand.beats(hand: TestConstants.defaultFlushHand))
         XCTAssertFalse(hand.beats(hand: TestConstants.defaultFullHouseHand))
         XCTAssertFalse(hand.beats(hand: TestConstants.defaultFourOfAKindHand))
         XCTAssertFalse(hand.beats(hand: TestConstants.defaultStraightFlushHand))
@@ -109,7 +104,6 @@ extension CardRankTests {
         XCTAssertTrue(hand.beats(hand: TestConstants.defaultThreeOfAKindHand))
         XCTAssertTrue(hand.beats(hand: TestConstants.defaultStraightHand))
         XCTAssertTrue(hand.beats(hand: TestConstants.defaultFlushHand))
-        XCTAssertTrue(hand.beats(hand: TestConstants.defaultFullHouseHand))
         XCTAssertFalse(hand.beats(hand: TestConstants.defaultFourOfAKindHand))
         XCTAssertFalse(hand.beats(hand: TestConstants.defaultStraightFlushHand))
         XCTAssertFalse(hand.beats(hand: TestConstants.defaultRoyalFlushHand))
@@ -123,7 +117,6 @@ extension CardRankTests {
         XCTAssertTrue(hand.beats(hand: TestConstants.defaultStraightHand))
         XCTAssertTrue(hand.beats(hand: TestConstants.defaultFlushHand))
         XCTAssertTrue(hand.beats(hand: TestConstants.defaultFullHouseHand))
-        XCTAssertTrue(hand.beats(hand: TestConstants.defaultFourOfAKindHand))
         XCTAssertFalse(hand.beats(hand: TestConstants.defaultStraightFlushHand))
         XCTAssertFalse(hand.beats(hand: TestConstants.defaultRoyalFlushHand))
     }
@@ -137,7 +130,6 @@ extension CardRankTests {
         XCTAssertTrue(hand.beats(hand: TestConstants.defaultFlushHand))
         XCTAssertTrue(hand.beats(hand: TestConstants.defaultFullHouseHand))
         XCTAssertTrue(hand.beats(hand: TestConstants.defaultFourOfAKindHand))
-        XCTAssertTrue(hand.beats(hand: TestConstants.defaultStraightFlushHand))
         XCTAssertFalse(hand.beats(hand: TestConstants.defaultRoyalFlushHand))
     }
     
@@ -151,7 +143,6 @@ extension CardRankTests {
         XCTAssertTrue(hand.beats(hand: TestConstants.defaultFullHouseHand))
         XCTAssertTrue(hand.beats(hand: TestConstants.defaultFourOfAKindHand))
         XCTAssertTrue(hand.beats(hand: TestConstants.defaultStraightFlushHand))
-        XCTAssertTrue(hand.beats(hand: TestConstants.defaultRoyalFlushHand))
     }
 }
 
