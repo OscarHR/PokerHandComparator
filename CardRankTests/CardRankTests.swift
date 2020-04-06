@@ -116,6 +116,45 @@ extension CardRankTests {
         XCTAssertEqual(h3.getHandName(), HandName.twoPair)
         XCTAssertEqual(h4.getHandName(), HandName.twoPair)
     }
+    
+    func testHandNameThreeOfAKind() {
+        let h1 = Hand(cards: [
+            Card(value: .ace, suit: .heart),
+            Card(value: .ace, suit: .diamond),
+            Card(value: .ace, suit: .club),
+            Card(value: .ten, suit: .club),
+            Card(value: .five, suit: .spade)
+        ])
+        
+        let h2 = Hand(cards: [
+            Card(value: .ten, suit: .heart),
+            Card(value: .seven, suit: .diamond),
+            Card(value: .four, suit: .club),
+            Card(value: .ten, suit: .club),
+            Card(value: .ten, suit: .spade)
+        ])
+        
+        let h3 = Hand(cards: [
+            Card(value: .six, suit: .heart),
+            Card(value: .seven, suit: .diamond),
+            Card(value: .four, suit: .club),
+            Card(value: .seven, suit: .club),
+            Card(value: .seven, suit: .spade)
+        ])
+        
+        let h4 = Hand(cards: [
+            Card(value: .queen, suit: .heart),
+            Card(value: .seven, suit: .diamond),
+            Card(value: .queen, suit: .club),
+            Card(value: .ten, suit: .club),
+            Card(value: .queen, suit: .spade)
+        ])
+        
+        XCTAssertEqual(h1.getHandName(), HandName.threeOfAKind)
+        XCTAssertEqual(h2.getHandName(), HandName.threeOfAKind)
+        XCTAssertEqual(h3.getHandName(), HandName.threeOfAKind)
+        XCTAssertEqual(h4.getHandName(), HandName.threeOfAKind)
+    }
 }
 
 // MARK: - Hand comparisons

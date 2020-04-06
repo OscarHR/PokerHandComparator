@@ -39,10 +39,13 @@ struct Hand  {
         }
         
         var pairs = [Int]()
+        var triples = [Int]()
         
         for (key, value) in dict {
             if value == 2 {
                 pairs.append(key)
+            } else if value == 3 {
+                triples.append(key)
             }
         }
         
@@ -50,6 +53,8 @@ struct Hand  {
             return .pair
         } else if pairs.count == 2 {
             return .twoPair
+        } else if triples.count == 1 {
+            return .threeOfAKind
         }
         
         return .highCard
