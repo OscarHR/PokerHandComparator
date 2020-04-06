@@ -9,25 +9,7 @@
 import XCTest
 @testable import CardRank
 
-class Comparator {
-    static func compare(hand: Hand, to toHand: Hand) -> Hand {
-        
-        
-        
-        return Hand(cards: [])
-    }
-}
-
 class CardRankTests: XCTestCase {
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     func testCreateCardAceOfHearts() {
         let c1 = Card(value: .ace, suit: .heart)
         let c2 = Card(abv: "AH")!
@@ -38,7 +20,139 @@ class CardRankTests: XCTestCase {
         XCTAssertEqual(c2.value, Value.ace)
         XCTAssertEqual(c2.suit, Suit.heart)
     }
+}
+
+// MARK: - Comparator Tests
+extension CardRankTests {
+    func testCompareHighCardToAll() {
+        let hand = TestConstants.defaultHighCardHand
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultPairHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultTwoPairHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultThreeOfAKindHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultStraightHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultFlushHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultFullHouseHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultFourOfAKindHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultStraightFlushHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultRoyalFlushHand))
+    }
     
+    func testComparePairToAll() {
+        let hand = TestConstants.defaultPairHand
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultPairHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultTwoPairHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultThreeOfAKindHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultStraightHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultFlushHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultFullHouseHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultFourOfAKindHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultStraightFlushHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultRoyalFlushHand))
+    }
+    
+    func testCompareTwoPairToAll() {
+        let hand = TestConstants.defaultTwoPairHand
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultPairHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultTwoPairHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultThreeOfAKindHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultStraightHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultFlushHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultFullHouseHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultFourOfAKindHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultStraightFlushHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultRoyalFlushHand))
+    }
+    
+    func testCompareThreeOfAKindToAll() {
+        let hand = TestConstants.defaultThreeOfAKindHand
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultPairHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultTwoPairHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultThreeOfAKindHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultStraightHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultFlushHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultFullHouseHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultFourOfAKindHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultStraightFlushHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultRoyalFlushHand))
+    }
+    
+    func testCompareStraightToAll() {
+        let hand = TestConstants.defaultStraightHand
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultPairHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultTwoPairHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultThreeOfAKindHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultStraightHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultFlushHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultFullHouseHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultFourOfAKindHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultStraightFlushHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultRoyalFlushHand))
+    }
+    
+    func testCompareFlushToAll() {
+        let hand = TestConstants.defaultFlushHand
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultPairHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultTwoPairHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultThreeOfAKindHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultStraightHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultFlushHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultFullHouseHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultFourOfAKindHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultStraightFlushHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultRoyalFlushHand))
+    }
+    
+    func testCompareFullHouseToAll() {
+        let hand = TestConstants.defaultFullHouseHand
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultPairHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultTwoPairHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultThreeOfAKindHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultStraightHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultFlushHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultFullHouseHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultFourOfAKindHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultStraightFlushHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultRoyalFlushHand))
+    }
+    
+    func testCompareFourOfAKindToAll() {
+        let hand = TestConstants.defaultFourOfAKindHand
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultPairHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultTwoPairHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultThreeOfAKindHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultStraightHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultFlushHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultFullHouseHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultFourOfAKindHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultStraightFlushHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultRoyalFlushHand))
+    }
+    
+    func testCompareStraightFlushToAll() {
+        let hand = TestConstants.defaultStraightFlushHand
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultPairHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultTwoPairHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultThreeOfAKindHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultStraightHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultFlushHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultFullHouseHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultFourOfAKindHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultStraightFlushHand))
+        XCTAssertFalse(hand.beats(hand: TestConstants.defaultRoyalFlushHand))
+    }
+    
+    func testCompareRoyalFlushToAll() {
+        let hand = TestConstants.defaultRoyalFlushHand
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultPairHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultTwoPairHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultThreeOfAKindHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultStraightHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultFlushHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultFullHouseHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultFourOfAKindHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultStraightFlushHand))
+        XCTAssertTrue(hand.beats(hand: TestConstants.defaultRoyalFlushHand))
+    }
 }
 
 // MARK: - Hand Name Tests
@@ -403,11 +517,11 @@ extension CardRankTests {
         ])
         
         let secondHand = Hand(cards: [
-            Card(value: .ten, suit: .club),
-            Card(value: .two, suit: .spade),
-            Card(value: .ace, suit: .diamond),
-            Card(value: .five, suit: .heart),
-            Card(value: .ace, suit: .spade),
+            Card(value: .ten, suit: .diamond),
+            Card(value: .two, suit: .club),
+            Card(value: .ace, suit: .heart),
+            Card(value: .five, suit: .spade),
+            Card(value: .ace, suit: .club),
         ])
         
         XCTAssertEqual(firstHand, secondHand)

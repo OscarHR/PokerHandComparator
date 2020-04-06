@@ -12,6 +12,8 @@
 		18C0B65C243B80D6006FEE3A /* CardRank.h in Headers */ = {isa = PBXBuildFile; fileRef = 18C0B64E243B80D6006FEE3A /* CardRank.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18C0B666243B9722006FEE3A /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C0B665243B9722006FEE3A /* Card.swift */; };
 		18C0B668243B9743006FEE3A /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C0B667243B9743006FEE3A /* Hand.swift */; };
+		18C0B66A243BBDC5006FEE3A /* HandComparator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C0B669243BBDC5006FEE3A /* HandComparator.swift */; };
+		18C0B66C243BC5DB006FEE3A /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C0B66B243BC5DB006FEE3A /* TestConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +35,8 @@
 		18C0B65B243B80D6006FEE3A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18C0B665243B9722006FEE3A /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		18C0B667243B9743006FEE3A /* Hand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
+		18C0B669243BBDC5006FEE3A /* HandComparator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandComparator.swift; sourceTree = "<group>"; };
+		18C0B66B243BC5DB006FEE3A /* TestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,7 @@
 				18C0B64E243B80D6006FEE3A /* CardRank.h */,
 				18C0B665243B9722006FEE3A /* Card.swift */,
 				18C0B667243B9743006FEE3A /* Hand.swift */,
+				18C0B669243BBDC5006FEE3A /* HandComparator.swift */,
 				18C0B64F243B80D6006FEE3A /* Info.plist */,
 			);
 			path = CardRank;
@@ -87,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				18C0B659243B80D6006FEE3A /* CardRankTests.swift */,
+				18C0B66B243BC5DB006FEE3A /* TestConstants.swift */,
 				18C0B65B243B80D6006FEE3A /* Info.plist */,
 			);
 			path = CardRankTests;
@@ -204,6 +210,7 @@
 			files = (
 				18C0B668243B9743006FEE3A /* Hand.swift in Sources */,
 				18C0B666243B9722006FEE3A /* Card.swift in Sources */,
+				18C0B66A243BBDC5006FEE3A /* HandComparator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18C0B65A243B80D6006FEE3A /* CardRankTests.swift in Sources */,
+				18C0B66C243BC5DB006FEE3A /* TestConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

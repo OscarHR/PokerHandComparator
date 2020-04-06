@@ -8,11 +8,11 @@
 
 import Foundation
 
-enum Suit {
-    case heart
-    case spade
-    case diamond
-    case club
+enum Suit : Int {
+    case heart = 0
+    case spade = 1
+    case diamond = 2
+    case club = 3
 }
 
 enum Value : Int {
@@ -77,6 +77,6 @@ extension Card : Comparable, Equatable {
     }
     
     static func == (lhs: Card, rhs: Card) -> Bool {
-        return lhs.value.rawValue == rhs.value.rawValue
+        return lhs.value.rawValue == rhs.value.rawValue && lhs.suit.rawValue == rhs.suit.rawValue
     }
 }

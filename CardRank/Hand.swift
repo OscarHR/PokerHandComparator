@@ -8,17 +8,17 @@
 
 import Foundation
 
-enum HandName {
-    case highCard
-    case pair
-    case twoPair
-    case threeOfAKind
-    case straight
-    case flush
-    case fullHouse
-    case fourOfAKind
-    case straightFlush
-    case royalFlush
+enum HandName : Int {
+    case highCard = 1
+    case pair = 2
+    case twoPair = 3
+    case threeOfAKind = 4
+    case straight = 5
+    case flush = 6
+    case fullHouse = 7
+    case fourOfAKind = 8
+    case straightFlush = 9
+    case royalFlush = 10
 }
 
 struct Hand  {
@@ -26,6 +26,10 @@ struct Hand  {
     
     init(cards: [Card]) {
         self.cards = cards.sorted(by: { $0 > $1 })
+    }
+    
+    func beats(hand: Hand) -> Bool {
+        return self == HandComparator.compare(hand: self, to: hand)
     }
     
     func getHandName() -> HandName {
