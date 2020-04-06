@@ -29,10 +29,14 @@ class CardRankTests: XCTestCase {
     }
 
     func testCreateCardAceOfHearts() {
-        let card = Card(value: .ace, suit: .heart)
+        let c1 = Card(value: .ace, suit: .heart)
+        let c2 = Card(abv: "AH")!
         
-        XCTAssertEqual(card.value, Value.ace)
-        XCTAssertEqual(card.suit, Suit.heart)
+        XCTAssertEqual(c1.value, Value.ace)
+        XCTAssertEqual(c1.suit, Suit.heart)
+        
+        XCTAssertEqual(c2.value, Value.ace)
+        XCTAssertEqual(c2.suit, Suit.heart)
     }
     
 }
@@ -41,11 +45,7 @@ class CardRankTests: XCTestCase {
 extension CardRankTests {
     func testHandNamePair() {
         let h1 = Hand(cards: [
-            Card(value: .ace, suit: .heart),
-            Card(value: .ace, suit: .club),
-            Card(value: .ten, suit: .diamond),
-            Card(value: .two, suit: .club),
-            Card(value: .five, suit: .spade)
+            Card(abv: "AH")!, Card(abv: "AC")!, Card(abv: "10D")!, Card(abv: "2C")!, Card(abv: "5S")!
         ])
         
         let h2 = Hand(cards: [
