@@ -35,26 +35,10 @@ class CardRankTests: XCTestCase {
         XCTAssertEqual(card.suit, Suit.heart)
     }
     
-    func testHandsAreEqual() {
-        let firstHand = Hand(cards: [
-            Card(value: .ace, suit: .heart),
-            Card(value: .ace, suit: .club),
-            Card(value: .ten, suit: .diamond),
-            Card(value: .two, suit: .club),
-            Card(value: .five, suit: .spade)
-        ])
-        
-        let secondHand = Hand(cards: [
-            Card(value: .ten, suit: .club),
-            Card(value: .two, suit: .spade),
-            Card(value: .ace, suit: .diamond),
-            Card(value: .five, suit: .heart),
-            Card(value: .ace, suit: .spade),
-        ])
-        
-        XCTAssertEqual(firstHand, secondHand)
-    }
-    
+}
+
+// MARK: - Hand Name Tests
+extension CardRankTests {
     func testHandNamePair() {
         let h1 = Hand(cards: [
             Card(value: .ace, suit: .heart),
@@ -131,5 +115,28 @@ class CardRankTests: XCTestCase {
         XCTAssertEqual(h2.getHandName(), HandName.twoPair)
         XCTAssertEqual(h3.getHandName(), HandName.twoPair)
         XCTAssertEqual(h4.getHandName(), HandName.twoPair)
+    }
+}
+
+// MARK: - Hand comparisons
+extension CardRankTests {
+    func testHandsAreEqual() {
+        let firstHand = Hand(cards: [
+            Card(value: .ace, suit: .heart),
+            Card(value: .ace, suit: .club),
+            Card(value: .ten, suit: .diamond),
+            Card(value: .two, suit: .club),
+            Card(value: .five, suit: .spade)
+        ])
+        
+        let secondHand = Hand(cards: [
+            Card(value: .ten, suit: .club),
+            Card(value: .two, suit: .spade),
+            Card(value: .ace, suit: .diamond),
+            Card(value: .five, suit: .heart),
+            Card(value: .ace, suit: .spade),
+        ])
+        
+        XCTAssertEqual(firstHand, secondHand)
     }
 }
