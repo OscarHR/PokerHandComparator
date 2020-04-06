@@ -57,6 +57,14 @@ struct Hand  {
             return .threeOfAKind
         }
         
+        if checkForStraight() {
+            return .straight
+        }
+        
+        return .highCard
+    }
+    
+    func checkForStraight() -> Bool {
         var previousCard : Card? = nil
         var straightCount = 0
         var firstCardIsAce = false
@@ -82,11 +90,7 @@ struct Hand  {
             straightCount = straightCount + 1
         }
         
-        if straightCount == 5 {
-            return .straight
-        }
-        
-        return .highCard
+        return straightCount == 5
     }
 }
 
