@@ -8,28 +8,34 @@
 
 import Foundation
 
+enum HandComparisonOutcome {
+    case equal
+    case better
+    case worse
+}
+
 class HandComparator {
-    static func compare(hand: Hand, to toHand: Hand) -> Hand {
+    static func compare(hand: Hand, to toHand: Hand) -> HandComparisonOutcome {
         let handName = hand.getHandName()
         let toHandName = toHand.getHandName()
 
         if handName.rawValue > toHandName.rawValue {
-            return hand
+            return .better
         } else if handName.rawValue < toHandName.rawValue {
-            return toHand
+            return .worse
         } else {
             for i in 0..<hand.cards.count {
                 let cardHand = hand.cards[i]
                 let cardToHand = toHand.cards[i]
                 
                 if cardHand > cardToHand {
-                    return hand
+                    return .better
                 } else if cardHand < cardToHand {
-                    return toHand
+                    return .worse
                 }
             }
             
-            return Hand(cards: [])
+            return .equal
         }
     }
 }

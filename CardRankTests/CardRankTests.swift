@@ -24,6 +24,28 @@ class CardRankTests: XCTestCase {
 
 // MARK: - Comparator Tests By Card
 extension CardRankTests {
+    func testCompareEqualHands() {
+        let h1 = Hand(cards: [
+            Card(value: .ace, suit: .club),
+            Card(value: .eight, suit: .heart),
+            Card(value: .king, suit: .heart),
+            Card(value: .five, suit: .spade),
+            Card(value: .two, suit: .club)
+        ])
+        
+        let h2 = Hand(cards: [
+            Card(value: .ace, suit: .club),
+            Card(value: .eight, suit: .heart),
+            Card(value: .king, suit: .heart),
+            Card(value: .five, suit: .spade),
+            Card(value: .two, suit: .club)
+        ])
+        
+        XCTAssertFalse(h1.beats(hand: h2))
+        XCTAssertFalse(h2.beats(hand: h1))
+        XCTAssertTrue(h1.isEqualTo(hand: h2))
+    }
+    
     func testCompareHighCard() {
         let h1 = Hand(cards: [
             Card(value: .ace, suit: .club),
