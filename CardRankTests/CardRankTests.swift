@@ -67,6 +67,26 @@ extension CardRankTests {
         XCTAssertTrue(h1.beats(hand: h2))
     }
     
+    func testCompareHighCardWorse() {
+        let h1 = Hand(cards: [
+            Card(value: .ace, suit: .heart),
+            Card(value: .four, suit: .club),
+            Card(value: .ten, suit: .diamond),
+            Card(value: .two, suit: .club),
+            Card(value: .six, suit: .spade)
+        ])
+        
+        let h2 = Hand(cards: [
+            Card(value: .ace, suit: .club),
+            Card(value: .eight, suit: .heart),
+            Card(value: .king, suit: .heart),
+            Card(value: .five, suit: .spade),
+            Card(value: .two, suit: .club)
+        ])
+        
+        XCTAssertFalse(h1.beats(hand: h2))
+    }
+    
     func testComparePairsOfAces() {
         let h1 = Hand(cards: [
             Card(value: .ace, suit: .club),
@@ -649,5 +669,65 @@ extension CardRankTests {
         ])
         
         XCTAssertEqual(h1.getHandName(), HandName.highCard)
+    }
+    
+    func testCompareStraightsWithAceWorse() {
+        let h1 = Hand(cards: [
+            Card(value: .ace, suit: .heart),
+            Card(value: .two, suit: .diamond),
+            Card(value: .three, suit: .club),
+            Card(value: .four, suit: .club),
+            Card(value: .five, suit: .spade)
+        ])
+        
+        let h2 = Hand(cards: [
+            Card(value: .five, suit: .heart),
+            Card(value: .four, suit: .diamond),
+            Card(value: .three, suit: .club),
+            Card(value: .two, suit: .club),
+            Card(value: .six, suit: .spade)
+        ])
+        
+        XCTAssertEqual(h1.compareTo(hand: h2), HandComparisonOutcome.worse)
+    }
+    
+    func testCompareStraightsWithAceBetter() {
+        let h1 = Hand(cards: [
+            Card(value: .five, suit: .heart),
+            Card(value: .four, suit: .diamond),
+            Card(value: .three, suit: .club),
+            Card(value: .two, suit: .club),
+            Card(value: .six, suit: .spade)
+        ])
+        
+        let h2 = Hand(cards: [
+            Card(value: .ace, suit: .heart),
+            Card(value: .two, suit: .diamond),
+            Card(value: .three, suit: .club),
+            Card(value: .four, suit: .club),
+            Card(value: .five, suit: .spade)
+        ])
+        
+        XCTAssertEqual(h1.compareTo(hand: h2), HandComparisonOutcome.better)
+    }
+    
+    func testCompareStraightsAceEqual() {
+        let h1 = Hand(cards: [
+            Card(value: .ace, suit: .heart),
+            Card(value: .two, suit: .diamond),
+            Card(value: .three, suit: .club),
+            Card(value: .four, suit: .club),
+            Card(value: .five, suit: .spade)
+        ])
+        
+        let h2 = Hand(cards: [
+            Card(value: .five, suit: .heart),
+            Card(value: .four, suit: .diamond),
+            Card(value: .three, suit: .club),
+            Card(value: .two, suit: .club),
+            Card(value: .ace, suit: .spade)
+        ])
+        
+        XCTAssertEqual(h1.compareTo(hand: h2), HandComparisonOutcome.equal)
     }
 }
