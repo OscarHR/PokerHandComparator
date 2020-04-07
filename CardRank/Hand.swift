@@ -32,11 +32,15 @@ class Hand  {
     }
     
     func beats(hand: Hand) -> Bool {
-        return HandComparator.compare(hand: self, to: hand) == .better
+        return compareTo(hand: hand) == .better
     }
     
     func isEqualTo(hand: Hand) -> Bool {
-        return HandComparator.compare(hand: self, to: hand) == .equal
+        return compareTo(hand: hand) == .equal
+    }
+    
+    func compareTo(hand: Hand) -> HandComparisonOutcome {
+        return HandComparator.compare(hand: self, to: hand)
     }
     
     func getHandName() -> HandName {

@@ -44,6 +44,7 @@ extension CardRankTests {
         XCTAssertFalse(h1.beats(hand: h2))
         XCTAssertFalse(h2.beats(hand: h1))
         XCTAssertTrue(h1.isEqualTo(hand: h2))
+        XCTAssertEqual(h1.compareTo(hand: h2), HandComparisonOutcome.equal)
     }
     
     func testCompareHighCard() {
