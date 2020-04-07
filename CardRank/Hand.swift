@@ -154,14 +154,10 @@ class Hand  {
         for card in cards {
             if let previous = previousCard {
                 let next = previous.value.rawValue - 1
-                if firstCardIsAce {
-                    if next != 13 && next != 5 {
-                        break
-                    }
-                    firstCardIsAce = false
-                } else if next != card.value.rawValue {
+                if !firstCardIsAce && next != card.value.rawValue {
                     break
                 }
+                firstCardIsAce = false
             } else if card.value == .ace {
                 firstCardIsAce = true
             }

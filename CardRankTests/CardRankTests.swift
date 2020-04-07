@@ -624,3 +624,30 @@ extension CardRankTests {
         XCTAssertEqual(firstHand, secondHand)
     }
 }
+
+// MARK: - Edge cases
+extension CardRankTests {
+    func testAroundTheCornerStraightHigh() {
+        let h1 = Hand(cards: [
+            Card(value: .ace, suit: .heart),
+            Card(value: .two, suit: .diamond),
+            Card(value: .king, suit: .heart),
+            Card(value: .queen, suit: .spade),
+            Card(value: .jack, suit: .club)
+        ])
+        
+        XCTAssertEqual(h1.getHandName(), HandName.highCard)
+    }
+    
+    func testAroundTheCornerStraightLow() {
+        let h1 = Hand(cards: [
+            Card(value: .ace, suit: .heart),
+            Card(value: .two, suit: .diamond),
+            Card(value: .three, suit: .heart),
+            Card(value: .four, suit: .spade),
+            Card(value: .king, suit: .club)
+        ])
+        
+        XCTAssertEqual(h1.getHandName(), HandName.highCard)
+    }
+}
